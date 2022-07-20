@@ -1,5 +1,5 @@
 module.exports = {
-    mutipleApiToObject: function (api) { //arrays
+    multipleApiToObject: function (api) { //arrays
         return api.map(api => api.toObject());
     },
     ApiToObject: function (api) {

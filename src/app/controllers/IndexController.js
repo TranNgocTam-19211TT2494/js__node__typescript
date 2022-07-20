@@ -1,16 +1,9 @@
 /**
- * @constructor
  * @controllers
  * @author Tam "name japan takahichi"
  * */ 
-var axios = require('axios');
-
-var config = {
-  method: 'get',
-  url: 'https://api.themoviedb.org/3/trending/all/day?api_key=a4999a28333d1147dbac0d104526337a&language=vi-VN&page=1',
-  headers: { }
-};
-const mutipleApiToObject = require('../../util/data');
+const { fetchTrending } = require('../../data/json');
+const { multipleApiToObject } = require('../../util/data');
 class IndexController
 {
     /**
@@ -18,14 +11,19 @@ class IndexController
      * @void
     */
     index(req, res, next) {
-        axios(config)
-        .then(response => {
-            console.log(JSON.stringify(response.data));
-            res.render('index',{ 
-                data: mutipleApiToObject(JSON.stringify(response.data))
-            })
-        })
-        .catch(error => next);
+        const trending = fetchTrending();
+        try {
+            res.render('index', {
+                response: trending,
+                movies: trending
+            });
+            console.log(trending);
+            
+        } catch (error) {
+            console.log(error);
+        }
+        
     }
+    
 }
 module.exports = new IndexController;

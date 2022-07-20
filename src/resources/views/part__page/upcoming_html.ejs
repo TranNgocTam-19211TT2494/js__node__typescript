@@ -1,0 +1,62 @@
+<% if(movies) { %>
+<section class="upcoming">
+        <div class="container">
+            <div class="flex-wrapper">
+                <div class="title-wrapper">
+                    <p class="section-subtitle">Online Streaming</p>
+                    <h2 class="h2 section-title">Upcoming Movies</h2>
+                </div>
+                <ul class="filter-list">
+                    <li>
+                        <button class="filter-btn">Movies</button>
+                    </li>
+                    <li>
+                        <button class="filter-btn">TV Shows</button>
+                    </li>
+                    <li>
+                        <button class="filter-btn">Anime</button>
+                    </li>
+                </ul>
+            </div>
+            <ul class="movies-list  has-scrollbar">
+                <% for(movie in movies) { %>
+                <li>
+                    <div class="movie-card">
+
+                        <a href="./movie-details.html">
+                            <figure class="card-banner">
+                                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/<%= movie.poster_path %>" alt="<%= movie.title %>">
+                            </figure>
+                        </a>
+
+                        <div class="title-wrapper">
+                            <a href="./movie-details.html">
+                                <h3 class="card-title"><%= movie.title %></h3>
+                            </a>
+
+                            <time datetime="2022"><%= movie.release_date %></time>
+                        </div>
+
+                        <div class="card-meta">
+                            <div class="badge badge-outline">HD</div>
+
+                            <div class="duration">
+                                <ion-icon name="time-outline"></ion-icon>
+
+                                <time datetime="PT137M">137 min</time>
+                            </div>
+
+                            <div class="rating">
+                                <ion-icon name="star"></ion-icon>
+
+                                <data><%= movie.vote_average %></data>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+</section>
+<% } %>

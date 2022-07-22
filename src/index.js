@@ -1,11 +1,20 @@
 const express = require('express');
 const express__layout = require('express-ejs-layouts');
+const express__session = require('express-session');
 const path = require('path');
 const morgan = require('morgan');
-const session = require('express-session');
+
 
 // Connect lib
 const app = express();
+
+// Save session.
+app.use(express__session({
+    resave: true,
+    saveUninitialized: true,
+    secret: 'somesecret',
+    cookie: { maxAge: 60000 }
+}));
 
 // Router middleware
 const route = require('./routes/app');
@@ -24,4 +33,9 @@ app.use(express.urlencoded({ extended: true }));
 route(app);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, console.log(`${PORT}`));
+var server = app.listen(PORT, "127.0.0.1", function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    
+    console.log('listening at http://%s:%s', host, port);
+});

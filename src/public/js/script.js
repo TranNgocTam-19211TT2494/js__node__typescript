@@ -50,3 +50,16 @@ window.addEventListener("scroll", function () {
   window.scrollY >= 500 ? goTopBtn.classList.add("active") : goTopBtn.classList.remove("active");
 
 });
+
+/**
+ * selected languages use local.
+ * */
+function changeLanguage() {
+  const select_lang = document.getElementById('language');
+  const option_val = select_lang.options[select_lang.selectedIndex]
+
+  document.getElementById('value').value = option_val.value;
+  localStorage.setItem("lang", option_val.value);
+} 
+
+

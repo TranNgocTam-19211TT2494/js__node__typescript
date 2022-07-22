@@ -32,6 +32,8 @@
     "express-ejs-layouts": "^2.5.1",
     "express-load": "^1.1.16",
     "express-session": "^1.17.3",
-    "morgan": "^1.10.0"
+    "jquery": "^3.6.0",
+    "morgan": "^1.10.0",
+    "node-localstorage": "^2.2.1"
   }
 }
